@@ -85,7 +85,7 @@ router.post('/students/new',function(req,res){
 })
 
 //渲染编辑学生页面
-router.get('/students/edit',function(req,res){
+router.get('/student/edit',function(req,res){
     //1.在客户端的列表页处理连接问题（需要有id参数）
     //2.获取要编辑的学生id
     //3.渲染编辑页面(1.根据id把学生信息查询出来。2.使用模板引擎渲染页面)
@@ -104,22 +104,24 @@ router.post('/students/edit',function(req,res){
     //req.body获取表单数据
     //Student.updataById()更新
     //发送响应
-    Student.updataById(req.body,function(err){
+    Student.updateById(req.body,function(err){
         if(err){
             return res.status(500).send('Server error')
         }
         res.redirect('/students')
     })
+    // console.log(req.query.id)
 })
 
 //处理删除学生
-router.get('/students/delete',function(req,res){
+router.get('/student/delete',function(req,res){
     Student.deleteById(req.query.id,function(err){
         if(err){
             return res.status(500).send('Server error')
         }
         res.redirect('/students')
     })
+    // console.log(req.query.id)
 })
 
 //3.把router导出
